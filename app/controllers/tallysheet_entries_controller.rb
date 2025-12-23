@@ -1,5 +1,5 @@
 class TallysheetEntriesController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :destroy, :index]
+  before_action :authenticate, :only => [:edit, :update, :destroy, :index]
   before_action :set_tallysheet_entry, :only => [:show, :edit, :update, :destroy]
   before_action :init
   include ApplicationHelper

@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_filter :authenticate, :only => [:login, :mail]
+  before_action :authenticate, :only => [:login, :mail]
   before_action :set_consumers, :only => [:index, :render_partial]
   include Sortable
 

@@ -1,5 +1,5 @@
 class StaticFlashesController < ApplicationController
-  before_filter :authenticate
+  before_action :authenticate
   before_action :set_static_flash, only: [:show, :edit, :update, :destroy]
 
   # GET /static_flashes
