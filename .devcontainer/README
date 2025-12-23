@@ -1,0 +1,8 @@
+Place a file named .env in this folder which contains the following:
+
+DATABASE_HOST=<db host name>
+DATABASE_USER=<db user name>
+DATABASE_PASSWORD=<db password>
+DATABASE_DB=<db user name>
+
+The content will be used to set the variables when creating the containers.
