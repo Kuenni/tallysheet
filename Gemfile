@@ -5,22 +5,22 @@ gem 'rails', '8.1.0'
 # Use MySQL as the database for Active Record
 gem 'mysql2', '~> 0.5.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 4.2.1'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 5.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.6.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.14.1'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 2.6.5', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -28,49 +28,49 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :production do
 	# Use Unicorn as the app server
 	# gem 'unicorn'
-	gem 'passenger'
+	gem 'passenger', '~> 6.1.0'
 end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'puma'
+  gem 'puma', '~> 7.1.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 4.2.1'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 4.4.0'
 end
 
 # JSON for parsing
-gem 'json'
+gem 'json', '~> 2.18.0'
 
 # Pagination of intex pages
-gem 'will_paginate'
+gem 'will_paginate', '~> 4.0.1'
 
 # Bootstrap CSS
-gem 'bootstrap-sass'
-gem 'autoprefixer-rails'
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'autoprefixer-rails', '~> 10.4.21'
 
 # And Fontawesome for icons
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '6.7.2'
 
 # Nicer pagination using bootstrap CSS.
-gem 'will_paginate-bootstrap'
+gem 'will_paginate-bootstrap', '1.0.2'
 
 # Active links.
-gem 'active_link_to'
+gem 'active_link_to','~> 1.0.5'
 
 # D3
-gem 'd3_rails'
+gem 'd3_rails', '~> 4.1.1'
 
 # Bootstrap form validation
-gem 'bootstrap-validator-rails'
+gem 'bootstrap-validator-rails', '~> 0.5.3'
 
 # Websockets
-gem 'redis'
-gem 'tubesock'
+gem 'redis', '~> 5.4.1'
+gem 'tubesock','~> 0.2.9'
