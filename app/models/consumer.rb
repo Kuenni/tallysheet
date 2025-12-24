@@ -75,16 +75,16 @@ class Consumer < ActiveRecord::Base
   end
 
   after_create do
-    Redis.new.publish "active_record", {:consumer => {:create => self}}.to_json(:except=> [:email])
+    #Redis.new.publish "active_record", {:consumer => {:create => self}}.to_json(:except=> [:email])
   end
 
   after_update do
-    Redis.new.publish "active_record", {:consumer => {:update => self}}.to_json(:except=> [:email])
+    #Redis.new.publish "active_record", {:consumer => {:update => self}}.to_json(:except=> [:email])
   end
 
   before_destroy do
     if destroyable?
-      Redis.new.publish "active_record", {:consumer => {:destroy => self}}.to_json(:except=> [:email])
+      #Redis.new.publish "active_record", {:consumer => {:destroy => self}}.to_json(:except=> [:email])
     end
     destroyable?
   end

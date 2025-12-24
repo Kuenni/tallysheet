@@ -72,5 +72,3 @@ gem 'd3_rails', '~> 4.1.1'
 gem 'bootstrap-validator-rails', '~> 0.5.3'
 
 # Websockets
-gem 'redis', '~> 5.4.1'
-gem 'tubesock','~> 0.2.9'
