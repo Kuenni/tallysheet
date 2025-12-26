@@ -1,7 +1,7 @@
 FROM "mcr.microsoft.com/vscode/devcontainers/ruby:2-3.4-trixie"
 
 RUN apt-get update && apt-get install -y \
-    nodejs \
+    npm \
     yarn \
     build-essential
 

@@ -5,18 +5,10 @@ gem 'rails', '8.1.0'
 # Use MySQL as the database for Active Record
 gem 'mysql2', '~> 0.5.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 4.2.1'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 5.0.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 4.6.1'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.14.1'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -53,7 +45,6 @@ gem 'json', '~> 2.18.0'
 gem 'will_paginate', '~> 4.0.1'
 
 # Bootstrap CSS
-gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails', '~> 10.4.21'
 
 # And Fontawesome for icons
@@ -68,7 +59,13 @@ gem 'active_link_to','~> 1.0.5'
 # D3
 gem 'd3_rails', '~> 4.1.1'
 
-# Bootstrap form validation
-gem 'bootstrap-validator-rails', '~> 0.5.3'
 
-# Websockets
+gem "stimulus-rails", "~> 1.3"
+
+gem "importmap-rails", "~> 2.2"
+
+gem "turbo-rails", "~> 2.0"
+
+gem "propshaft", "~> 1.3"
+
+gem "cssbundling-rails", "~> 1.4"
