@@ -86,14 +86,14 @@
 			<%= link_to 'Edit', edit_consumer_path(@consumer), class: "btn btn-primary" %>
 			<%= link_to 'Pay', consumer_pay_path(@consumer), class: "btn btn-success" %>
 			<%= link_to 'Transfer', consumer_transfer_path(@consumer), class: "btn btn-success" %>
-			<%= link_to 'Mail', consumer_mail_path(@consumer), class: "btn btn-default" %>
+			<%= link_to 'Mail', consumer_mail_path(@consumer), class: "btn btn-secondary" %>
 			<% end %>
-			<%= link_to 'History', consumer_history_path(@consumer), class: "btn btn-default" %>
-			<%= link_to 'Payments', consumer_payments_path(@consumer), class: "btn btn-default" %>
+			<%= link_to 'History', consumer_history_path(@consumer), class: "btn btn-secondary" %>
+			<%= link_to 'Payments', consumer_payments_path(@consumer), class: "btn btn-secondary" %>
 		</div>
 	</div>
 </form>
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-default" %>
+<%= link_to 'Back', root_path, class: "btn btn-secondary" %>
