@@ -93,15 +93,6 @@ export default class extends Controller {
         .style("text-anchor", "middle")
         .text("amount / week")
 
-        svg.selectAll("circle.debug")
-  .data(stackedInput)
-  .join("circle")
-  .attr("class", "debug")
-  .attr("cx", d => x(d.x))
-  .attr("cy", height - 2)
-  .attr("r", 4)
-  .attr("fill", "red")
-
     })
   }
 }
