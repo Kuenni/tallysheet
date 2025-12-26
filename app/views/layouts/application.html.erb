@@ -67,6 +67,14 @@
 		    </div>
 		  <% end %>
 	  <% end %>
+    <% if not flash.empty? %>
+      <% flash.each do |key, value| %>
+      <div data-static-flash-target="toast" role="alert" aria-live="assertive" aria-atomic="true" class="toast text-bg-<%= flash_class(key) %>">
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="close">×</button>
+        <%= value.html_safe %>
+      </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
     <% if content_for? :jumbotron %>
@@ -78,14 +86,7 @@
 	<% end %>
     
 	<div id="flash" class="container">
-  <% if not flash.empty? %>
-    <% flash.each do |key, value| %>
-    <div class="alert <%= flash_class(key) %> alert-dismissable fade ">
-      <button class="close" data-dismiss="alert">×</button>
-      <%= value.html_safe %>
-    </div>
-    <% end %>
-  <% end %>
+ 
 	</div>
     
   <div class="container" role="main">
