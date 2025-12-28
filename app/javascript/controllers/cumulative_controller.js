@@ -10,9 +10,9 @@ export default class extends Controller {
 	    left: 50
 	}
 
-    const containerWidth = this.element.clientWidth
+    //const containerWidth = this.element.clientWidth
 
-    const width = containerWidth - margin.left - margin.right
+    const width = 1250//containerWidth - margin.left - margin.right
     const height = 200 - margin.top - margin.bottom
 
     const svg = d3.select(this.element)

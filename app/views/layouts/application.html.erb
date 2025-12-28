@@ -61,22 +61,30 @@
 	  <% if not @static_flashes.empty? and current_page?(root_url) %>
 		  <% @static_flashes.each do |flash| %>
         <div data-static-flash-target="toast" data-sticky="true" role="alert" aria-live="assertive" aria-atomic="true" class="toast text-bg-<%= flash_class("success") %>">
-			    <small><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="close"></button>
-          Expires <%= flash.expires.to_formatted_s(:short) %></small><br>
-			    <%= sanitize flash.content %>
+			    <div class="toast-header"> 
+            <small><button type="button" class="btn-close me-2" data-bs-dismiss="toast" aria-label="close"></button>
+            Expires <%= flash.expires.to_formatted_s(:short) %></small>
+          </div>
+          <div class="toast-body">
+			      <%= sanitize flash.content %>
+          </div>
 		    </div>
 		  <% end %>
 	  <% end %>
     <% if not flash.empty? %>
       <% flash.each do |key, value| %>
       <div data-static-flash-target="toast" role="alert" aria-live="assertive" aria-atomic="true" class="toast text-bg-<%= flash_class(key) %>">
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="close">×</button>
-        <%= value.html_safe %>
+        <div class="toast-body">
+          <button type="button" class="btn-close me-2" data-bs-dismiss="toast" aria-label="close"></button>
+        
+          <%= value.html_safe %>
+        </div>
       </div>
       <% end %>
     <% end %>
   </div>
 </div>
+<div id="navbar-spacer" style="padding-top: 7rem"></div>
     <% if content_for? :jumbotron %>
 	<div class="jumbotron">
 		<%= yield :jumbotron %>
@@ -85,11 +93,8 @@
 	<div class="container">&nbsp;</div>
 	<% end %>
     
-	<div id="flash" class="container">
- 
-	</div>
     
-  <div class="container" role="main">
+  <div class="container" role="main" style="padding-top: 5em">
 		<%= yield %>
   </div>
     

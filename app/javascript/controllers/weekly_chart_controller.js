@@ -4,7 +4,7 @@ import * as d3 from "d3"
 export default class extends Controller {
   connect() {
     const margin = { top: 20, right: 0, bottom: 35, left: 50 }
-    const width = this.element.clientWidth - margin.left - margin.right
+    const width = 1250//this.element.clientWidth - margin.left - margin.right
     const height = 200 - margin.top - margin.bottom
 
     const svg = d3.select(this.element)
