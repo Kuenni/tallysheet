@@ -1,0 +1,10 @@
+#chart-carousel .carousel-control-prev, .carousel-control-next{
+  filter: invert(1);
+}
+
+#chart-carousel .carousel-indicators [data-bs-target] {
+  filter: invert(1);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
