@@ -83,17 +83,17 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<% if authenticated? %>
-			<%= link_to 'Edit', edit_consumer_path(@consumer), class: "btn btn-primary" %>
+			<%= link_to 'Edit', edit_consumer_path(@consumer), class: "btn btn-primary btn-sm" %>
 			<%= link_to 'Pay', consumer_pay_path(@consumer), class: "btn btn-success" %>
 			<%= link_to 'Transfer', consumer_transfer_path(@consumer), class: "btn btn-success" %>
-			<%= link_to 'Mail', consumer_mail_path(@consumer), class: "btn btn-secondary" %>
+			<%= link_to 'Mail', consumer_mail_path(@consumer), class: "btn btn-secondary btn-sm" %>
 			<% end %>
-			<%= link_to 'History', consumer_history_path(@consumer), class: "btn btn-secondary" %>
-			<%= link_to 'Payments', consumer_payments_path(@consumer), class: "btn btn-secondary" %>
+			<%= link_to 'History', consumer_history_path(@consumer), class: "btn btn-secondary btn-sm" %>
+			<%= link_to 'Payments', consumer_payments_path(@consumer), class: "btn btn-secondary btn-sm" %>
 		</div>
 	</div>
 </form>
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary" %>
+<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>

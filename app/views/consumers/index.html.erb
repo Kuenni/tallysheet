@@ -16,12 +16,12 @@
 		<tr>
 			<td><%= consumer.name %></td>
 			<td><% if authenticated? %><%= consumer.email %><% else %>-<% end %></td>
-        	<td><span class="glyphicon glyphicon-<%= consumer.visible ? 'ok' : 'remove' %>" aria-hidden="true"></span></td>
+        	<td><i class="bi bi-<%= consumer.visible ? 'check' : 'x' %>-circle" aria-hidden="true"></span></td>
 			<td><%= style_credit consumer.credit %></td>
-			<td><%= link_to 'Show', consumer, class: "btn btn-secondary btn-xs" %>
-			<%= link_to 'Pay', consumer_pay_path(consumer), class: "btn btn-success btn-xs" %>
-			<%= link_to 'Edit', edit_consumer_path(consumer), class: "btn btn-primary btn-xs" %>
-			<%= link_to 'Destroy', consumer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", disabled: !consumer.destroyable? %></td>
+			<td><%= link_to 'Show', consumer, class: "btn btn-secondary btn-sm" %>
+			<%= link_to 'Pay', consumer_pay_path(consumer), class: "btn btn-success btn-sm" %>
+			<%= link_to 'Edit', edit_consumer_path(consumer), class: "btn btn-primary btn-sm" %>
+			<%= link_to 'Destroy', consumer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm", disabled: !consumer.destroyable? %></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -29,6 +29,6 @@
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary" %>
-<%= link_to 'Mail to all consumers', {controller: "dashboard", action: "mail"}, class: "btn btn-secondary" %>
-<%= link_to 'New Consumer', new_consumer_path, class: "btn btn-primary" %>
+<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Mail to all consumers', {controller: "dashboard", action: "mail"}, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'New Consumer', new_consumer_path, class: "btn btn-primary btn-sm" %>

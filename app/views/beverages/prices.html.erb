@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th><%= sortable "name", "Name" %></th>
-      <th><%= sortable_amount "available", "Available" %></th>
+      <th style="text-align:center"><%= sortable_amount "available", "Available" %></th>
       <th><%= sortable_numeric "price", "Price" %></th>
     </tr>
   </thead>
@@ -15,12 +15,12 @@
         <td>
 	  <%= beverage.name %> 
 	  <% unless @quota[beverage].nil? %>
-	  <span class="badge"><%= (@quota[beverage] * 100).round %> %</span>
+	  <span class="badge text-bg-secondary"><%= (@quota[beverage] * 100).round %> %</span>
 	  <% else %>
-	  <span class="badge">0 %</span>
+	  <span class="badge text-bg-secondary">0 %</span>
 	  <% end %>
 	</td>
-        <td><span class="glyphicon glyphicon-<%= beverage.available ? 'ok' : 'remove' %>" aria-hidden="true"></span></td>
+        <td style="text-align:center"><i class="bi bi-<%= beverage.available ? 'check' : 'x' %>-circle" aria-hidden="true"></span></td>
         <td><%= beverage.price_humanized %> &euro;</td>
       </tr>
     <% end %>
@@ -29,4 +29,4 @@
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary" %>
+<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>
