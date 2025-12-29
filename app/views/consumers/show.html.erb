@@ -5,7 +5,7 @@
 <p class="text-muted">
 <% @quota.sort_by {|k, v| v}.reverse.each do |beverage, share| %>
 	<% if share > 0 %>
-		<span style="white-space:nowrap;"><%= beverage.name %> <span class="badge"><%= share >= 0.01 ? (share * 100).round : "< 1" %> %</span></span>
+		<span style="white-space:nowrap;"><%= beverage ? beverage.name : '<Deleted>' %> <span class="badge text-bg-secondary"><%= share >= 0.01 ? (share * 100).round : "< 1" %> %</span></span>
 	<% end %>
 <% end %>
 </p>
@@ -66,7 +66,7 @@
 				<% if !e.payed %>
 				<tr>
 					<td><%= e.created_at.to_formatted_s(:short) %></td>
-					<td><%= e.beverage.name %></td>
+					<td><%= e.beverage ? e.beverage.name : '<Deleted>' %></td>
 					<td><%= e.amount %></td>
 					<td><%= "%.2f" % e.price %> &euro;</td>
 				</tr>
@@ -84,8 +84,8 @@
 		<div class="col-sm-offset-2 col-sm-10">
 			<% if authenticated? %>
 			<%= link_to 'Edit', edit_consumer_path(@consumer), class: "btn btn-primary btn-sm" %>
-			<%= link_to 'Pay', consumer_pay_path(@consumer), class: "btn btn-success" %>
-			<%= link_to 'Transfer', consumer_transfer_path(@consumer), class: "btn btn-success" %>
+			<%= link_to 'Pay', consumer_pay_path(@consumer), class: "btn btn-success btn-sm" %>
+			<%= link_to 'Transfer', consumer_transfer_path(@consumer), class: "btn btn-success btn-sm" %>
 			<%= link_to 'Mail', consumer_mail_path(@consumer), class: "btn btn-secondary btn-sm" %>
 			<% end %>
 			<%= link_to 'History', consumer_history_path(@consumer), class: "btn btn-secondary btn-sm" %>
