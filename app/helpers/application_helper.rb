@@ -33,9 +33,9 @@ module ApplicationHelper
     title ||= column.titleize
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
     if column == sort_column
-      title += " <i class=\"fa fa-sort-#{css_class}-#{sort_direction}\"></i>"
+      title += " <i class=\"bi bi-sort-#{css_class}-#{sort_direction == "asc" ? "down" : "up" }\"></i>"
     else
-      title += " <i class=\"fa fa-sort\"></i>"
+      title += " <i class=\"bi bi-sort-down-alt\"></i>"
     end
     link_to title.html_safe, {:controller => controller_name, :action => action_name, :sort => column, :direction => direction}
   end
