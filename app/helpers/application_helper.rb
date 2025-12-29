@@ -49,6 +49,6 @@ module ApplicationHelper
   end
   
   def authenticated?
-    not request.authorization.nil?
+    session[:admin] == true
   end
 end
