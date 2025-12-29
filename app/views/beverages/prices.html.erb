@@ -20,7 +20,7 @@
 	  <span class="badge text-bg-secondary">0 %</span>
 	  <% end %>
 	</td>
-        <td style="text-align:center"><i class="bi bi-<%= beverage.available ? 'check' : 'x' %>-circle" aria-hidden="true"></span></td>
+        <td style="text-align:center"><i class="bi bi-<%= beverage.available ? 'check-circle' : 'x-square' %>" aria-hidden="true"></i></td>
         <td><%= beverage.price_humanized %> &euro;</td>
       </tr>
     <% end %>

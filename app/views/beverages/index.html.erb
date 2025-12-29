@@ -15,10 +15,10 @@
       <tr>
         <td><%= beverage.name %></td>
         <td><%= "%.2f" % beverage.price %> &euro;</td>
-        <td><i class="bi bi-<%= beverage.available ? 'check' : 'x' %>-circle" aria-hidden="true"></span></td>
+        <td><i class="bi bi-<%= beverage.available ? 'check-circle' : 'x-square' %>" aria-hidden="true"></i></td>
         <td><%= link_to 'Show', beverage, class: "btn btn-secondary btn-sm" %>
         <%= link_to 'Edit', edit_beverage_path(beverage), class: "btn btn-primary btn-sm" %>
-        <%= link_to 'Destroy', beverage, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+        <%= link_to 'Destroy', beverage, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
