@@ -8,7 +8,7 @@ class TallysheetEntry < ActiveRecord::Base
   
   def price
     if self.beverage == nil
-      nil
+      0
     else
       self.amount * self.beverage.price
     end
