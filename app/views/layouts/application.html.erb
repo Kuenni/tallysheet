@@ -31,7 +31,7 @@
           <ul class="navbar-nav ms-auto">
             <% if !authenticated? %>
               <li class="nav-item">
-                <%= link_to "Login", { controller: "dashboard", action: "login" }, class: "nav-link" %>
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#adminLoginModal">Login</a>
               </li>
             <% else %>
               <li class="nav-item dropdown">
@@ -47,6 +47,7 @@
                   <li><%= active_link_to "All tallysheet entries", { controller: "tallysheet_entries", action: "index" }, class: "dropdown-item" %></li>
                   <li><%= active_link_to "All static flash messages", { controller: "static_flashes", action: "index" }, class: "dropdown-item" %></li>
                   <li><%= active_link_to "Update derived attributes", { controller: "consumers", action: "update_derived" }, class: "dropdown-item" %></li>
+                  <li><%= link_to "Logout", logout_path, data: { turbo_method: :delete}, class: "dropdown-item" %></li>
                 </ul>
               </li>
             <% end %>
@@ -100,7 +101,8 @@
     
   <div class="container footer">
     <hr/>
-    <p class="text-body-secondyary small">
+    <center>
+      <p class="text-body-secondyary small">
 	    <a href="http://www.rubyonrails.org" target="_blank">Ruby On Rails</a> | 
 	    <a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a> | 
 	    <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a> | 
@@ -108,5 +110,8 @@
     </center>
   </div>
   
+  <%= render "layouts/admin_login_modal" %>
+
+
   </body>
 </html>

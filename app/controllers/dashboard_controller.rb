@@ -1,13 +1,9 @@
 class DashboardController < ApplicationController
-  before_action :authenticate, :only => [:login, :mail]
+  before_action :require_admin, :only => [:login, :mail]
   before_action :set_consumers, :only => [:index, :render_partial]
   include Sortable
 
   def index
-  end
-  
-  def login
-    redirect_to root_path
   end
   
   def hourly

@@ -8,6 +8,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery :with => :exception
   helper_method :rendering_time
   before_action :set_rendering_start_time, :set_default_url_options_host, :set_static_flashes
+
+  helper_method :admin_logged_in?
+
+  def admin_logged_in?
+    session[:admin] == true
+  end
+
+  def require_admin
+    redirect_to login_path, alert: "Bitte einloggen!" unless admin_logged_in?
+  end
+
   def rendering_time
     millis = (Time.now.usec - @rendering_start_time).abs / 1000.0
     "Rendered in %d ms" % millis
