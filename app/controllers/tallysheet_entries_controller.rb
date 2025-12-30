@@ -52,13 +52,15 @@ class TallysheetEntriesController < ApplicationController
     #
     if params[:tallysheet_entries][:beverage_id] == ""
       flash[:error] = 'Please select a beverage.'
-      return redirect_to :back
+      return redirect_back fallback_location: root_path
     end
+
     # Check if there is at least one entry.
-    if ids.length < 0 || (ids.length == 1 && !numeric?(ids[0]))
+    if ids.none? { |id| id.present? && id.to_i > 0 }
       flash[:error] = 'Please select at least one consumer.'
-      return redirect_to :back
+      return redirect_back fallback_location: root_path
     end
+    
     # Create for each new consumer id on new tallysheet entry.
     ids.each do |id|
       if numeric?(id)
@@ -67,7 +69,7 @@ class TallysheetEntriesController < ApplicationController
         # Try to save.
         if !entry.save
           flash[:error] = 'Sorry, an error occured.'
-          return redirect_to :back
+          return redirect_back fallback_location: root_path
         end
       end
     end
