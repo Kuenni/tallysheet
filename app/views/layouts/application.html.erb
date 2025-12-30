@@ -23,7 +23,7 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><%= active_link_to 'New entry', new_tallysheet_entry_path, class: "nav-link" %></li>
+            <li class="nav-item bg-warning"><%= active_link_to 'New entry', new_tallysheet_entry_path, class: "nav-link" %></li>
             <li class="nav-item"><%= active_link_to "Many new entries", { controller: "tallysheet_entries", action: "new_many" }, class: "nav-link" %></li>
             <li class="nav-item"><%= active_link_to "Latest entries", { controller: "tallysheet_entries", action: "latest" }, class: "nav-link" %></li>
             <li class="nav-item"><%= active_link_to 'Prices', { controller: "beverages", action: "prices" }, class: "nav-link" %></li>
