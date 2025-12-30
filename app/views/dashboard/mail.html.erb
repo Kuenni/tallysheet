@@ -10,14 +10,14 @@
 <%= form_tag({controller: "dashboard", action: "mail"}, class: "form-horizontal") do %>
 
 <div class="form-group">
-	<%= label_tag :subject, nil, class: "col-sm-2 control-label" %>
+	<%= label_tag :subject, nil, class: "col-sm-2 form-label" %>
 	<div class="col-sm-10">
 		<%= text_field_tag :subject, "", placeholder: "Subject", class: "form-control", required: "required" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= label_tag :reply_to, nil, class: "col-sm-2 control-label" %>
+	<%= label_tag :reply_to, nil, class: "col-sm-2 form-label" %>
 	<div class="col-sm-10">
 		<%= email_field_tag :reply_to, "", placeholder: "Reply to address", class: "form-control", required: "required" %>
 	</div>
@@ -31,7 +31,7 @@
 </div>
 	
 <div class="form-group">
-	<%= label_tag :body, nil, class: "col-sm-2 control-label" %>
+	<%= label_tag :body, nil, class: "col-sm-2 form-label" %>
 	<div class="col-sm-10">
 		<%= text_area_tag :body, nil, placeholder: "Your message goes here...", class: "form-control", required: "required" %>
 	</div>

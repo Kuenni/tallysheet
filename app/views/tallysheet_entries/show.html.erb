@@ -3,42 +3,42 @@
 <form class="form-horizontal" role="form">
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Created at</label>
+		<label class="col-sm-2 form-label">Created at</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.created_at.to_s() %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Updated at</label>
+		<label class="col-sm-2 form-label">Updated at</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.updated_at.to_s() %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Consumer</label>
+		<label class="col-sm-2 form-label">Consumer</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.consumer.name %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Beverage</label>
+		<label class="col-sm-2 form-label">Beverage</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.beverage.name %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Amount</label>
+		<label class="col-sm-2 form-label">Amount</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.amount %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Price</label>
+		<label class="col-sm-2 form-label">Price</label>
 		<div class="col-sm-10">
 			<div class="input-group">
 				<input value="<%= "%.2f" % @tallysheet_entry.price %>" name="saldo" type="text" class="form-control" disabled/>
@@ -48,7 +48,7 @@
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Payed</label>
+		<label class="col-sm-2 form-label">Payed</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.payed %>" type="text" class="form-control" disabled/>
 		</div>
