@@ -8,7 +8,7 @@ export default class extends Controller {
 	    right: 0,
 	    bottom: 35,
 	    left: 50
-	}
+	  }
 
     //const containerWidth = this.element.clientWidth
 
@@ -18,7 +18,7 @@ export default class extends Controller {
     const svg = d3.select(this.element)
       .append("svg")
       .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("height", height + margin.top + margin.bottom + 30) //+30 for legend further down
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`)
 
@@ -27,80 +27,108 @@ export default class extends Controller {
 
     // Daten laden
     d3.json("/dashboard/hourly.json").then(data => {
-      // x-domain: alle Datumswerte
-      const xDomain = Object.keys(data[0].values).map(d => new Date(d))
-      const x = d3.scaleTime()
-                  .domain(d3.extent(xDomain))
-                  .range([0, width])
 
-      // Transformiere Werte in kumulierte Summe
-      data = data.map(d => {
-        const keys = Object.keys(d.values).sort()
-        let sum = 0
-        const values = keys.map(k => {
-          sum += d.values[k]
-          return { x: new Date(k), y: sum }
-        })
-        return { name: d.name, values: values }
+    const categories = data.map(d => d.name)
+
+    const dateKeys = Array.from(
+      new Set(data.flatMap(d => Object.keys(d.values)))
+    ).sort()
+
+    const cumulativeByCategory = {}
+
+    data.forEach(d => {
+      let sum = 0
+      cumulativeByCategory[d.name] = {}
+      dateKeys.forEach(k => {
+        sum += d.values[k] ?? 0
+        cumulativeByCategory[d.name][k] = sum
       })
-
-      // y-Domain bestimmen (gestapelte Summe)
-      const yMax = d3.max(data, d => d.values[d.values.length - 1].y)
-      const y = d3.scaleLinear()
-                  .domain([0, yMax])
-                  .range([height, 0])
-
-      // Stack-Generator
-      const stack = d3.stack()
-                      .keys(data.map(d => d.name))
-                      .value((d, key) => {
-                        const item = d.find(e => e.name === key)
-                        return item ? item.values[item.values.length - 1].y : 0
-                      })
-
-      // Area-Generator
-      const area = d3.area()
-                     .x(d => x(d.data.x))
-                     .y0(d => y(d[0]))
-                     .y1(d => y(d[1]))
-
-      // Lineare Struktur für gestapelte Area
-      const series = data.map(d => d.values.map(v => ({ x: v.x, y: v.y })))
-      const stacked = d3.stack()
-                        .keys(d3.range(data.length))
-                        .value((d, key) => series[key].find(s => s.x.getTime() === d.x.getTime())?.y || 0)
-      const xValues = series[0].map(v => ({ x: v.x }))
-
-      const stackedData = stacked(xValues)
-
-      // Area zeichnen
-      svg.selectAll(".area")
-        .data(stackedData)
-        .join("path")
-        .attr("class", "area")
-        .attr("d", d => area(d))
-        .attr("fill", (d, i) => color(data[i].name))
-
-      // x-Achse
-      svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b, %a %d")))
-
-      // y-Achse
-      svg.append("g")
-        .call(d3.axisLeft(y))
-
-      // Achsenbeschriftung
-      svg.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x", 0 - (height / 2))
-        .attr("dy", "1em")
-        .attr("fill", "#777")
-        .style("text-anchor", "middle")
-        .text("cumulative amount")
     })
 
-  }
+    const stackedInput = dateKeys.map(k => {
+      const row = { x: new Date(k) }
+      categories.forEach(c => row[c] = cumulativeByCategory[c][k])
+      return row
+    })
+    const stack = d3.stack().keys(categories)
+    const stackedData = stack(stackedInput)
+    const x = d3.scaleTime()
+      .domain(d3.extent(stackedInput, d => d.x))
+      .range([0, width])
 
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(stackedData.at(-1), d => d[1])])
+      .range([height, 0])
+    const area = d3.area()
+      .x(d => x(d.data.x))
+      .y0(d => y(d[0]))
+      .y1(d => y(d[1]))
+    svg.selectAll(".area")
+      .data(stackedData)
+      .join("path")
+      .attr("class", "area")
+      .attr("d", area)
+      .attr("fill", d => color(d.key))
+    const labels = svg.append("g").attr("class", "labels")
+
+    stackedData.forEach(series => {
+      labels.selectAll(`.label-${series.key}`)
+        .data(series)
+        .enter()
+        .append("text")
+        .attr("x", d => x(d.data.x))
+        .attr("y", d => (y(d[0]) + y(d[1])) / 2)
+        .attr("dy", "0.35em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "10px")
+        .style("fill", "#333")
+        .text(d => {
+          const v = d[1] - d[0]  // <- tatsächlicher Segmentwert (nicht kumulativ)
+          return v > 0 ? v : ""
+        })
+    })
+
+    // x-Achse
+    svg.append("g")
+      .attr("transform", `translate(0,${height})`)
+      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%a, %b %d")))
+
+    // y-Achse
+    svg.append("g")
+      .call(d3.axisLeft(y))
+    // Achsenbeschriftung
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .attr("fill", "#777")
+      .style("text-anchor", "middle")
+      .text("cumulative amount")
+
+    // Legend
+    const legend = svg.append("g")
+      .attr("class", "legend")
+      .attr("transform", `translate(0, ${height + 30})`);
+
+    const legendItem = legend.selectAll(".legend-item")
+      .data(color.domain())
+      .enter()
+      .append("g")
+      .attr("class", "legend-item")
+      .attr("transform", (d, i) => `translate(${i * 120}, 0)`);
+
+    legendItem.append("rect")
+      .attr("width", 14)
+      .attr("height", 14)
+      .attr("fill", d => color(d));
+
+    legendItem.append("text")
+      .attr("x", 20)
+      .attr("y", 12)
+      .style("font-size", "12px")
+      .style("fill", "#555")
+      .text(d => d);
+    })
+  }
 }
