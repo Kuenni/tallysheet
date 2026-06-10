@@ -1,10 +1,10 @@
-<div class="page-header"><h1>Listing Static Flashes</h1></div>
+<div class="page-header"><h1>System-Meldungen auflisten</h1></div>
 
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>Expires</th>
-      <th>Content</th>
+      <th>Gültig bis</th>
+      <th>Inhalt</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +14,9 @@
       <tr>
         <td><%= static_flash.expires %></td>
         <td><%= static_flash.content %></td>
-        <td><%= link_to 'Show', static_flash, class: "btn btn-secondary btn-sm" %></td>
-        <td><%= link_to 'Edit', edit_static_flash_path(static_flash), class: "btn btn-primary btn-sm" %></td>
-        <td><%= link_to "Destroy", static_flash_path(static_flash), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %></td>
+        <td><%= link_to 'Anzeigen', static_flash, class: "btn btn-secondary btn-sm" %></td>
+        <td><%= link_to 'Bearbeiten', edit_static_flash_path(static_flash), class: "btn btn-primary btn-sm" %></td>
+        <td><%= link_to "Löschen", static_flash_path(static_flash), data: { turbo_method: :delete, turbo_confirm: "Sind Sie sicher?" }, class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,5 +24,5 @@
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>
-<%= link_to 'New Static flash', new_static_flash_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Zurück', root_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Neue System-Meldung', new_static_flash_path, class: "btn btn-primary btn-sm" %>

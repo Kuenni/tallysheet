@@ -40,7 +40,7 @@ class BeveragesController < ApplicationController
 
     respond_to do |format|
       if @beverage.save
-        format.html { redirect_to @beverage, notice: 'Beverage was successfully created.' }
+        format.html { redirect_to @beverage, notice: 'Getränk wurde erfolgreich erstellt.' }
         format.json { render action: 'show', status: :created, location: @beverage }
       else
         format.html { render action: 'new' }
@@ -54,7 +54,7 @@ class BeveragesController < ApplicationController
   def update
     respond_to do |format|
       if @beverage.update(beverage_params)
-        format.html { redirect_to @beverage, notice: 'Beverage was successfully updated.' }
+        format.html { redirect_to @beverage, notice: 'Getränk wurde erfolgreich aktualisiert.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

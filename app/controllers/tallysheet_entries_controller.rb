@@ -51,13 +51,13 @@ class TallysheetEntriesController < ApplicationController
     beverage_id = params[:tallysheet_entries][:beverage_id].to_i
     #
     if params[:tallysheet_entries][:beverage_id] == ""
-      flash[:error] = 'Please select a beverage.'
+      flash[:error] = 'Bitte wählen Sie ein Getränk aus.'
       return redirect_back fallback_location: root_path
     end
 
     # Check if there is at least one entry.
     if ids.none? { |id| id.present? && id.to_i > 0 }
-      flash[:error] = 'Please select at least one consumer.'
+      flash[:error] = 'Bitte wählen Sie mindestens einen Namen aus.'
       return redirect_back fallback_location: root_path
     end
     
@@ -68,13 +68,13 @@ class TallysheetEntriesController < ApplicationController
         entry = TallysheetEntry.new(consumer_id: id.to_i, beverage_id: beverage_id, amount: 1, payed: false)
         # Try to save.
         if !entry.save
-          flash[:error] = 'Sorry, an error occured.'
+          flash[:error] = 'Es ist ein Fehler aufgetreten.'
           return redirect_back fallback_location: root_path
         end
       end
     end
     # Everything successful
-    flash[:notice] = 'Tallysheet entries were successfully created.'
+    flash[:notice] = 'Strichlisteneinträge wurden erfolgreich erstellt.'
     return redirect_to root_path
   end
 
@@ -86,7 +86,7 @@ class TallysheetEntriesController < ApplicationController
 
     respond_to do |format|
       if @tallysheet_entry.save
-        format.html { redirect_to root_path, notice: 'Tallysheet entry was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Strichlisteneintrag wurde erfolgreich erstellt.' }
         format.json { render action: 'show', status: :created, location: @tallysheet_entry }
       else
         format.html { render action: 'new' }
@@ -100,7 +100,7 @@ class TallysheetEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @tallysheet_entry.update(tallysheet_entry_params)
-        format.html { redirect_to @tallysheet_entry, notice: 'Tallysheet entry was successfully updated.' }
+        format.html { redirect_to @tallysheet_entry, notice: 'Strichlisteneintrag wurde erfolgreich aktualisiert.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

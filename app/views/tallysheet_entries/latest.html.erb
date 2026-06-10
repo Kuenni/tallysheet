@@ -1,14 +1,14 @@
-<div class="page-header"><h1>Latest tallysheet entries</h1></div>
+<div class="page-header"><h1>Die letzten Striche</h1></div>
 
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th>Date</th>
-			<th>Consumer</th>
-			<th>Beverage</th>
-			<th>Amount</th>
-			<th>Price</th>
-			<th>Paid</th>
+			<th>Eingetragen</th>
+			<th>Name</th>
+			<th>Getränk</th>
+			<th>Anzahl</th>
+			<th>Preis</th>
+			<th>Bezahlt</th>
 			<% if authenticated? %>
 			<th></th>
 			<th></th>
@@ -21,7 +21,7 @@
 		<% @tallysheet_entries.each do |tallysheet_entry| %>
 		<tr>
 			<td>
-				<%= time_ago_in_words(tallysheet_entry.created_at) %>
+				<%= time_ago_in_words(tallysheet_entry.created_at, scope: :'datetime.distance_in_words_ago') %>
 			</td>
 			<td><%= tallysheet_entry.consumer != nil ? tallysheet_entry.consumer.name : '-' %></td>
 			<td><%= tallysheet_entry.beverage != nil ? tallysheet_entry.beverage.name : '-' %></td>
@@ -29,9 +29,9 @@
 			<td><%= "%.2f" % tallysheet_entry.price %> &euro;</td>
 			<td><i class="bi bi-<%= tallysheet_entry.payed ? 'check-circle' : 'x-square' %>" aria-hidden="true"></i></td>
 			<% if authenticated? %>
-			<td><%= link_to 'Show', tallysheet_entry, class: "btn btn-secondary btn-sm" %></td>
-			<td><%= link_to 'Edit', edit_tallysheet_entry_path(tallysheet_entry), class: "btn btn-primary btn-sm" %></td>
-			<td><%= link_to 'Destroy', tallysheet_entry, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %></td>
+			<td><%= link_to 'Anzeigen', tallysheet_entry, class: "btn btn-secondary btn-sm" %></td>
+			<td><%= link_to 'Bearbeiten', edit_tallysheet_entry_path(tallysheet_entry), class: "btn btn-primary btn-sm" %></td>
+			<td><%= link_to 'Löschen', tallysheet_entry, data: { turbo_method: :delete, turbo_confirm: "Sind Sie sicher?" }, class: "btn btn-danger btn-sm" %></td>
 			<% end %>
 		</tr>
 		<% end %>
@@ -40,4 +40,4 @@
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Zurück', root_path, class: "btn btn-secondary btn-sm" %>

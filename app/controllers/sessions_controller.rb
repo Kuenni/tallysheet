@@ -6,14 +6,14 @@ class SessionsController < ApplicationController
   def create
     if params[:user] == 'tally' && params[:password] == 'sheet!'
       session[:admin] = true
-      redirect_to root_path, notice: "Welcome admin"
+      redirect_to root_path, notice: "Willkommen, Admin!"
     else
-      redirect_to root_path, alert: "Login failed"
+      redirect_to root_path, alert: "Anmeldung fehlgeschlagen"
     end
   end
 
   def destroy
     reset_session
-    redirect_to root_path, notice: "Logged out"
+    redirect_to root_path, notice: "Erfolgreich abgemeldet"
   end
 end

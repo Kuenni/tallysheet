@@ -1,31 +1,31 @@
 <div class="page-header">
-	<h1>Mail to all consumers</h1>
+	<h1>E-Mail an alle Nutzer</h1>
 </div>
 
 <p>
-	Send a mail to this consumer.
-	Only use text, no HTML.
+	Senden Sie eine E-Mail an alle Nutzer.
+	Nur Text verwenden, kein HTML.
 </p>
 
 <%= form_tag({controller: "dashboard", action: "mail"}, class: "form-horizontal") do %>
 
 <div class="form-group">
-	<%= label_tag :subject, nil, class: "col-sm-2 form-label" %>
+	<%= label_tag :subject, "Betreff", class: "col-sm-2 form-label" %>
 	<div class="col-sm-10">
-		<%= text_field_tag :subject, "", placeholder: "Subject", class: "form-control", required: "required" %>
+		<%= text_field_tag :subject, "", placeholder: "Betreff", class: "form-control", required: "required" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= label_tag :reply_to, nil, class: "col-sm-2 form-label" %>
+	<%= label_tag :reply_to, "Antwort an", class: "col-sm-2 form-label" %>
 	<div class="col-sm-10">
-		<%= email_field_tag :reply_to, "", placeholder: "Reply to address", class: "form-control", required: "required" %>
+		<%= email_field_tag :reply_to, "", placeholder: "Antwortadresse", class: "form-control", required: "required" %>
 	</div>
 </div>
 
 <div class="form-group">
 	<div class="col-sm-10 offset-sm-1 text-muted">
-		Hello ...,<br/>
+		Hallo ...,<br/>
 		</br/>
 	</div>
 </div>
@@ -33,20 +33,20 @@
 <div class="form-group">
 	<%= label_tag :body, nil, class: "col-sm-2 form-label" %>
 	<div class="col-sm-10">
-		<%= text_area_tag :body, nil, placeholder: "Your message goes here...", class: "form-control", required: "required" %>
+		<%= text_area_tag :body, nil, placeholder: "Ihre Nachricht hier...", class: "form-control", required: "required" %>
 	</div>
 </div>
 
 <div class="form-group">
 	<div class="col-sm-10 offset-sm-1 text-muted">
 		--<br/>
-		The Tallysheet is available at <%= root_url %>
+		Die Strichliste ist verfügbar unter <%= root_url %>
 	</div>
 </div>
 
 <div class="form-group">
 	<div class="offset-sm-1 col-sm-10">
-		<%= submit_tag 'Mail', class: "btn btn-primary btn-sm", data: { confirm: 'Are you sure?' } %>
+		<%= submit_tag 'Senden', class: "btn btn-primary btn-sm", data: { confirm: 'Sind Sie sicher?' } %>
 	</div>
 </div>
 
@@ -54,4 +54,4 @@
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Zurück', root_path, class: "btn btn-secondary btn-sm" %>

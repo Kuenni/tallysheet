@@ -3,7 +3,7 @@ class ConsumersMailer < ActionMailer::Base
   
   def debt_reminder(consumer)
     @consumer = consumer
-    mail(to: @consumer.email, subject: 'Reminder on your tallysheet debt')
+    mail(to: @consumer.email, subject: 'Erinnerung an Ihre Strichlisten-Schulden')
   end
   
   def generic(consumer, subject, body, reply_to)

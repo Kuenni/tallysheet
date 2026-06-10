@@ -29,7 +29,7 @@ class StaticFlashesController < ApplicationController
 
     respond_to do |format|
       if @static_flash.save
-        format.html { redirect_to @static_flash, notice: 'Static flash was successfully created.' }
+        format.html { redirect_to @static_flash, notice: 'System-Meldung wurde erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @static_flash }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class StaticFlashesController < ApplicationController
   def update
     respond_to do |format|
       if @static_flash.update(static_flash_params)
-        format.html { redirect_to @static_flash, notice: 'Static flash was successfully updated.' }
+        format.html { redirect_to @static_flash, notice: 'System-Meldung wurde erfolgreich aktualisiert.' }
         format.json { render :show, status: :ok, location: @static_flash }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class StaticFlashesController < ApplicationController
   def destroy
     @static_flash.destroy
     respond_to do |format|
-      format.html { redirect_to static_flashes_url, notice: 'Static flash was successfully destroyed.' }
+      format.html { redirect_to static_flashes_url, notice: 'System-Meldung wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end

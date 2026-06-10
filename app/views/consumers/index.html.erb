@@ -1,12 +1,12 @@
-<div class="page-header"><h1>Listing consumers</h1></div>
+<div class="page-header"><h1>Nutzer auflisten</h1></div>
 
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Email</th>
-			<th>Visible</th>
-			<th>Credit</th>
+			<th>E-Mail</th>
+			<th>Sichtbar</th>
+			<th>Guthaben</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -18,10 +18,10 @@
 			<td><% if authenticated? %><%= consumer.email %><% else %>-<% end %></td>
         	<td><i class="bi bi-<%= consumer.visible ? 'check-circle' : 'x-square' %>" aria-hidden="true"></i></td>
 			<td><%= style_credit consumer.credit %></td>
-			<td><%= link_to 'Show', consumer, class: "btn btn-secondary btn-sm" %>
-			<%= link_to 'Pay', consumer_pay_path(consumer), class: "btn btn-success btn-sm" %>
-			<%= link_to 'Edit', edit_consumer_path(consumer), class: "btn btn-primary btn-sm" %>
-			<%= link_to 'Destroy', consumer, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm", disabled: !consumer.destroyable? %></td>
+			<td><%= link_to 'Anzeigen', consumer, class: "btn btn-secondary btn-sm" %>
+			<%= link_to 'Bezahlen', consumer_pay_path(consumer), class: "btn btn-success btn-sm" %>
+			<%= link_to 'Bearbeiten', edit_consumer_path(consumer), class: "btn btn-primary btn-sm" %>
+			<%= link_to 'Löschen', consumer, data: { turbo_method: :delete, turbo_confirm: "Sind Sie sicher?" }, class: "btn btn-danger btn-sm", disabled: !consumer.destroyable? %></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -29,6 +29,6 @@
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>
-<%= link_to 'Mail to all consumers', {controller: "dashboard", action: "mail"}, class: "btn btn-secondary btn-sm" %>
-<%= link_to 'New Consumer', new_consumer_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Zurück', root_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'E-Mail an alle Nutzer', {controller: "dashboard", action: "mail"}, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Neuer Nutzer', new_consumer_path, class: "btn btn-primary btn-sm" %>

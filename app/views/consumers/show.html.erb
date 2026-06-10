@@ -5,7 +5,7 @@
 <p class="text-muted">
 <% @quota.sort_by {|k, v| v}.reverse.each do |beverage, share| %>
 	<% if share > 0 %>
-		<span style="white-space:nowrap;"><%= beverage ? beverage.name : '<Deleted>' %> <span class="badge text-bg-secondary"><%= share >= 0.01 ? (share * 100).round : "< 1" %> %</span></span>
+		<span style="white-space:nowrap;"><%= beverage ? beverage.name : '<Gelöscht>' %> <span class="badge text-bg-secondary"><%= share >= 0.01 ? (share * 100).round : "< 1" %> %</span></span>
 	<% end %>
 <% end %>
 </p>
@@ -28,13 +28,13 @@
 	</div>
 	<% end %>
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Visible</label>
+		<label class="col-sm-2 form-label">Sichtbar</label>
 		<div class="col-sm-10">
 			<input name="name" type="checkbox" <% if @consumer.visible %>checked="checked"<% end %> disabled/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Credit</label>
+		<label class="col-sm-2 form-label">Guthaben</label>
 		<div class="col-sm-10">
 			<div class="input-group">
 				<input value="<%= @consumer.credit_humanized %>" name="saldo" type="text" class="form-control" disabled/>
@@ -43,13 +43,13 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Debt</label>
+		<label class="col-sm-2 form-label">Schulden</label>
 		<div class="col-sm-10">
 			<div class="input-group">
 				<input value="<%= @consumer.debt_humanized %>" name="saldo" type="text" class="form-control" disabled/>
 				<span class="input-group-addon">&euro;</span>
 			</div>
-			(Unpaid beverages minus credit.)
+			(Unbezahlte Getränke abzüglich Guthaben.)
 		</div>
 	</div>
 	<% if @consumer.amount_of_beverages > 0 %>
@@ -57,23 +57,23 @@
 		<div class="offset-sm-1 col-sm-10">
 			<table class="table table-striped table-hover">
 				<tr>
-					<th>Date</th>
-					<th>Name</th>
-					<th>Amount</th>
-					<th>Price</th>
+					<th>Datum</th>
+					<th>Getränk</th>
+					<th>Anzahl</th>
+					<th>Preis</th>
 				</tr>
 				<% @consumer.tallysheet_entries.each do |e| %>
 				<% if !e.payed %>
 				<tr>
 					<td><%= e.created_at.to_formatted_s(:short) %></td>
-					<td><%= e.beverage ? e.beverage.name : '<Deleted>' %></td>
+					<td><%= e.beverage ? e.beverage.name : '<Gelöscht>' %></td>
 					<td><%= e.amount %></td>
 					<td><%= "%.2f" % e.price %> &euro;</td>
 				</tr>
 				<% end %>
 				<% end %>
 				<tfoot>
-					<td colspan="3" style="text-align: right">Sum:</td>
+					<td colspan="3" style="text-align: right">Summe:</td>
 					<th ><%= "%.2f" % (@consumer.debt + @consumer.credit) %> &euro;</th>
 				</tfoot>
 			</table>
@@ -83,17 +83,17 @@
 	<div class="form-group">
 		<div class="offset-sm-1 col-sm-10">
 			<% if authenticated? %>
-			<%= link_to 'Edit', edit_consumer_path(@consumer), class: "btn btn-primary btn-sm" %>
-			<%= link_to 'Pay', consumer_pay_path(@consumer), class: "btn btn-success btn-sm" %>
-			<%= link_to 'Transfer', consumer_transfer_path(@consumer), class: "btn btn-success btn-sm" %>
-			<%= link_to 'Mail', consumer_mail_path(@consumer), class: "btn btn-secondary btn-sm" %>
+			<%= link_to 'Bearbeiten', edit_consumer_path(@consumer), class: "btn btn-primary btn-sm" %>
+			<%= link_to 'Bezahlen', consumer_pay_path(@consumer), class: "btn btn-success btn-sm" %>
+			<%= link_to 'Überweisen', consumer_transfer_path(@consumer), class: "btn btn-success btn-sm" %>
+			<%= link_to 'E-Mail', consumer_mail_path(@consumer), class: "btn btn-secondary btn-sm" %>
 			<% end %>
-			<%= link_to 'History', consumer_history_path(@consumer), class: "btn btn-secondary btn-sm" %>
-			<%= link_to 'Payments', consumer_payments_path(@consumer), class: "btn btn-secondary btn-sm" %>
+			<%= link_to 'Verlauf', consumer_history_path(@consumer), class: "btn btn-secondary btn-sm" %>
+			<%= link_to 'Zahlungen', consumer_payments_path(@consumer), class: "btn btn-secondary btn-sm" %>
 		</div>
 	</div>
 </form>
 
 <hr>
 
-<%= link_to 'Back', root_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Zurück', root_path, class: "btn btn-secondary btn-sm" %>

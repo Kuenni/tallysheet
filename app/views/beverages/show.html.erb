@@ -10,7 +10,7 @@
 	</div>
 	
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Price</label>
+		<label class="col-sm-2 form-label">Preis</label>
 		<div class="col-sm-10">
 			<div class="input-group">
 				<input value="<%= @beverage.price_humanized %>" name="price" type="text" class="form-control" disabled/>
@@ -20,7 +20,7 @@
 	</div>
 	
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Available</label>
+		<label class="col-sm-2 form-label">Verfügbar</label>
 		<div class="col-sm-10">
 			<input name="name" type="checkbox" <% if @beverage.available %>checked="checked"<% end %> disabled/>
 		</div>
@@ -28,7 +28,7 @@
 	
 	<div class="form-group">
 		<div class="offset-sm-1 col-sm-10">
-			<%= link_to 'Edit', edit_beverage_path(@beverage), class: "btn btn-primary btn-sm" %>
+			<%= link_to 'Bearbeiten', edit_beverage_path(@beverage), class: "btn btn-primary btn-sm" %>
 		</div>
 	</div>
 	
@@ -36,4 +36,4 @@
 
 <hr>
 
-<%= link_to 'Back', beverages_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Zurück', beverages_path, class: "btn btn-secondary btn-sm" %>

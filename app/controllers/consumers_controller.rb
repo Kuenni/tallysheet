@@ -12,9 +12,9 @@ class ConsumersController < ApplicationController
     if params[:amount] != nil
       if numeric?(params[:amount])
         @consumer.pay params[:amount].to_f
-        flash[:notice] = "Successfully payed #{params[:amount]} &euro;."
+        flash[:notice] = "Erfolgreich #{params[:amount]} &euro; bezahlt."
       else
-        flash[:error] = "Amount has to be numeric."
+        flash[:error] = "Der Betrag muss numerisch sein."
       end
       respond_to do |format|
         format.html { redirect_to @consumer }
@@ -29,9 +29,9 @@ class ConsumersController < ApplicationController
       if numeric?(params[:amount])
         recipient = Consumer.find(params[:recipient_id])
         @consumer.transfer recipient, params[:amount].to_f
-        flash[:notice] = "Successfully transferred #{params[:amount]} &euro; to #{recipient.name}."
+        flash[:notice] = "Erfolgreich #{params[:amount]} &euro; an #{recipient.name} übertragen."
       else
-        flash[:error] = "Amount has to be numeric."
+        flash[:error] = "Der Betrag muss numerisch sein."
       end
       respond_to do |format|
         format.html { redirect_to @consumer }
@@ -42,14 +42,14 @@ class ConsumersController < ApplicationController
 
   def mail_debt_reminder
     ConsumersMailer.debt_reminder(@consumer).deliver
-    flash[:notice] = "Delivered reminder email to %s." % @consumer.name
+    flash[:notice] = "Erinnerungs-E-Mail an %s gesendet." % @consumer.name
     redirect_back fallback_location: root_path
   end
 
   def mail
     if params[:subject] != nil && params[:body] != nil
       ConsumersMailer.generic(@consumer, params[:subject], params[:body], params[:reply_to]).deliver
-      flash[:notice] = "Delivered email to %s." % @consumer.name
+      flash[:notice] = "E-Mail an %s gesendet." % @consumer.name
       respond_to do |format|
         format.html { redirect_to @consumer }
         format.json { head :no_content }
@@ -89,7 +89,7 @@ class ConsumersController < ApplicationController
 
     respond_to do |format|
       if @consumer.save
-        format.html { redirect_to @consumer, notice: 'Consumer was successfully created.' }
+        format.html { redirect_to @consumer, notice: 'Name wurde erfolgreich erstellt.' }
         format.json { render action: 'show', status: :created, location: @consumer }
       else
         format.html { render action: 'new' }
@@ -103,7 +103,7 @@ class ConsumersController < ApplicationController
   def update
     respond_to do |format|
       if @consumer.update(consumer_params)
-        format.html { redirect_to @consumer, notice: 'Consumer was successfully updated.' }
+        format.html { redirect_to @consumer, notice: 'Name wurde erfolgreich aktualisiert.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -129,7 +129,7 @@ class ConsumersController < ApplicationController
       c.update_derived
     end
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Updated derived attributes of all customers' }
+      format.html { redirect_to root_path, notice: 'Abgeleitete Attribute aller Kameraden aktualisiert.' }
       format.json { head :no_content }
     end
   end

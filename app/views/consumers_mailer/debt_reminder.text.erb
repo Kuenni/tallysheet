@@ -1,8 +1,8 @@
-Hello <%= @consumer.name%>,
+Hallo <%= @consumer.name%>,
 
-this is a friendly reminder that your current debt on the tallysheet is <%= "%.2f" % @consumer.debt %> Euro. Please pay as soon as possible.
+dies ist eine freundliche Erinnerung daran, dass Ihre aktuellen Schulden auf der Strichliste <%= "%.2f" % @consumer.debt %> Euro betragen. Bitte zahlen Sie diesen Betrag so bald wie möglich.
 
-You can view your current tallysheet entries with debt and credit under:
-<%=consumer_url @consumer%>
+Sie können Ihre aktuellen Strichlisteneinträge mit Schulden und Guthaben unter folgendem Link einsehen:
+<%= consumer_url @consumer %>
  
-Thanks for your cooperation and have a great day!
+Vielen Dank für Ihre Unterstützung und einen schönen Tag!

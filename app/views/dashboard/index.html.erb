@@ -3,10 +3,10 @@
 <table class="table table-striped table-hover align-middle text-center">
 	<thead>
 		<tr>
-			<th><%= sortable "name", "Consumer" %></th>
-			<th><%= sortable_numeric "amount_of_beverages", "Beverages" %></th>
-			<th><%= sortable_numeric "amount_of_paid_beverages", "Paid" %></th>
-			<th><%= sortable_numeric "debt", "Debt" %></th>
+			<th><%= sortable "name", "Name" %></th>
+			<th><%= sortable_numeric "amount_of_beverages", "Striche" %></th>
+			<th><%= sortable_numeric "amount_of_paid_beverages", "Bezahlt" %></th>
+			<th><%= sortable_numeric "debt", "Schulden" %></th>
 			<th></th>
 		</tr>
 	</thead>
@@ -18,11 +18,11 @@
 			<td><%= consumer.amount_of_beverages %></td>
 			<td><%= consumer.amount_of_paid_beverages %></td>
 			<td><%= style_debt consumer.debt %></td>
-			<td style="text-align: left"> <%= link_to 'Show', consumer_path(consumer), class: "btn btn-secondary btn-sm" %>
+			<td style="text-align: left"> <%= link_to 'Anzeigen', consumer_path(consumer), class: "btn btn-secondary btn-sm" %>
 			<% if authenticated? %>
-			<%= link_to 'Pay', consumer_pay_path(consumer), class: "btn btn-success btn-sm" %>
+			<%= link_to 'Bezahlen', consumer_pay_path(consumer), class: "btn btn-success btn-sm" %>
 			<% if consumer.debt > 5.00 %>
-			<%= link_to 'Remind', consumer_mail_debt_reminder_path(consumer), data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+			<%= link_to 'Erinnern', consumer_mail_debt_reminder_path(consumer), data: { confirm: 'Sind Sie sicher?' }, class: "btn btn-danger btn-sm" %>
 			<% end %>
 			<% end %>
 			</td>
@@ -34,13 +34,13 @@
 	<% if num_hidden > 0 %>
 		<tr>
 			<td colspan="5"><a href="#" onclick="$('.hidden-customer').collapse('toggle'); return false;" class="text-muted">
-				<%= num_hidden %> hidden ...
+				<%= num_hidden %> ausgeblendet ...
 			</a></td>
 		</tr>
 	<% end %>
 	</tbody>
 	<tfoot>
-		<th>Summary</th>
+		<th>Summe</th>
 		<th><%= total_amount_of_beverages %></th>
 		<th><%= total_amount_of_paid_beverages %></th>
 		<th><%= style_debt total_debt %></th>

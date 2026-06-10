@@ -1,44 +1,44 @@
-<div class="page-header"><h1>Tallysheet entry</h1></div>
+<div class="page-header"><h1>Strichlisteneintrag</h1></div>
 
 <form class="form-horizontal" role="form">
 
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Created at</label>
+		<label class="col-sm-2 form-label">Erstellt am</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.created_at.to_s() %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Updated at</label>
+		<label class="col-sm-2 form-label">Aktualisiert am</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.updated_at.to_s() %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Consumer</label>
+		<label class="col-sm-2 form-label">Name</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.consumer.name %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Beverage</label>
+		<label class="col-sm-2 form-label">Getränk</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.beverage.name %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Amount</label>
+		<label class="col-sm-2 form-label">Anzahl</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.amount %>" type="text" class="form-control" disabled/>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Price</label>
+		<label class="col-sm-2 form-label">Preis</label>
 		<div class="col-sm-10">
 			<div class="input-group">
 				<input value="<%= "%.2f" % @tallysheet_entry.price %>" name="saldo" type="text" class="form-control" disabled/>
@@ -48,7 +48,7 @@
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 form-label">Payed</label>
+		<label class="col-sm-2 form-label">Bezahlt</label>
 		<div class="col-sm-10">
 			<input value="<%= @tallysheet_entry.payed %>" type="text" class="form-control" disabled/>
 		</div>
@@ -56,7 +56,7 @@
 
 	<div class="form-group">
 		<div class="offset-sm-1 col-sm-10">
-			<%= link_to 'Edit', edit_tallysheet_entry_path(@tallysheet_entry), class: "btn btn-primary btn-sm" %>
+			<%= link_to 'Bearbeiten', edit_tallysheet_entry_path(@tallysheet_entry), class: "btn btn-primary btn-sm" %>
 		</div>
 	</div>
 
@@ -64,4 +64,4 @@
 
 <hr>
 
-<%= link_to 'Back', tallysheet_entries_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Zurück', tallysheet_entries_path, class: "btn btn-secondary btn-sm" %>

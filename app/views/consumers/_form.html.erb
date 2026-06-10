@@ -1,7 +1,7 @@
 <%= form_for(@consumer, html: {class: "form-horizontal"}) do |f| %>
 <% if @consumer.errors.any? %>
 <div id="error_explanation">
-	<h2><%= pluralize(@consumer.errors.count, "error") %> prohibited this consumer from being saved:</h2>
+	<h2><%= @consumer.errors.count %> <%= @consumer.errors.count == 1 ? "Fehler" : "Fehler" %> verhinderten das Speichern dieses Namens:</h2>
 	<ul>
 		<% @consumer.errors.full_messages.each do |msg| %>
 		<li>
@@ -13,21 +13,21 @@
 <% end %>
 
 <div class="input-group">
-	<%= f.label :name, class: "input-group-text col-sm-1" %>
+	<%= f.label :name, "Name", class: "input-group-text col-sm-1" %>
 	<div class="col-sm-5">
 		<%= f.text_field :name, class: "form-control", required: "required" %>
 	</div>
 </div>
 
 <div class="input-group">
-	<%= f.label :email, class: "input-group-text col-sm-1" %>
+	<%= f.label :email, "E-Mail", class: "input-group-text col-sm-1" %>
 	<div class="col-sm-5">
 		<%= f.email_field :email, class: "form-control", required: "required" %>
 	</div>
 </div>
 
 <div class="input-group">
-	<%= f.label :visible, class: "input-group-text col-sm-1" %>
+	<%= f.label :visible, "Sichtbar", class: "input-group-text col-sm-1" %>
 	<div class="col-sm-5">
 		<div class="form-control">
 			<%= f.check_box :visible, class: "form-check-input" %>
@@ -36,7 +36,7 @@
 </div>
 
 <div class="input-group">
-	<%= f.label :credit, class: "input-group-text col-sm-1" %>
+	<%= f.label :credit, "Guthaben", class: "input-group-text col-sm-1" %>
 	<div class="col-sm-5">
 		<div class="input-group">
 		<%= f.number_field :credit_humanized, class: "form-control", required: "required", min: "-10000", max: "10000", step: "0.01" %>
@@ -47,7 +47,7 @@
 
 <div class="form-group">
 	<div class="offset-sm-1 col-sm-10">
-		<%= f.submit class: "btn btn-primary btn-sm" %>
+		<%= f.submit "Speichern", class: "btn btn-primary btn-sm" %>
 	</div>
 </div>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tallysheet</title>
+    <title>Der Große (digitale) Deckel</title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track" => true %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
@@ -11,7 +11,7 @@
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="<%= root_url %>">
         <img src="/images/logo_small.png" height="40" class="me-2" />
-        Tallysheet
+        Der Große (digitale) Deckel
         </a>
         <button class="navbar-toggler" type="button"
           data-bs-toggle="collapse"
@@ -23,10 +23,10 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item bg-warning"><%= active_link_to 'New entry', new_tallysheet_entry_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= active_link_to "Many new entries", { controller: "tallysheet_entries", action: "new_many" }, class: "nav-link" %></li>
-            <li class="nav-item"><%= active_link_to "Latest entries", { controller: "tallysheet_entries", action: "latest" }, class: "nav-link" %></li>
-            <li class="nav-item"><%= active_link_to 'Prices', { controller: "beverages", action: "prices" }, class: "nav-link" %></li>
+            <li class="nav-item bg-warning"><%= active_link_to 'Neuer Strich', new_tallysheet_entry_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= active_link_to "Neuer Mehrfacheintrag", { controller: "tallysheet_entries", action: "new_many" }, class: "nav-link" %></li>
+            <li class="nav-item"><%= active_link_to "Letzte Striche", { controller: "tallysheet_entries", action: "latest" }, class: "nav-link" %></li>
+            <li class="nav-item"><%= active_link_to 'Preise', { controller: "beverages", action: "prices" }, class: "nav-link" %></li>
           </ul>
           <ul class="navbar-nav ms-auto">
             <% if !authenticated? %>
@@ -40,14 +40,14 @@
                   Admin
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
-                  <li><%= active_link_to 'New consumer', new_consumer_path, class: "dropdown-item" %></li>
-                  <li><%= active_link_to "All consumers", { controller: "consumers", action: "index" }, class: "dropdown-item" %></li>
-                  <li><%= active_link_to 'Mail to all consumers', { controller: "dashboard", action: "mail" }, class: "dropdown-item" %></li>
-                  <li><%= active_link_to "All beverages", { controller: "beverages", action: "index" }, class: "dropdown-item" %></li>
-                  <li><%= active_link_to "All tallysheet entries", { controller: "tallysheet_entries", action: "index" }, class: "dropdown-item" %></li>
-                  <li><%= active_link_to "All static flash messages", { controller: "static_flashes", action: "index" }, class: "dropdown-item" %></li>
-                  <li><%= active_link_to "Update derived attributes", { controller: "consumers", action: "update_derived" }, class: "dropdown-item" %></li>
-                  <li><%= link_to "Logout", logout_path, data: { turbo_method: :delete}, class: "dropdown-item" %></li>
+                  <li><%= active_link_to 'Neuer Nutzer', new_consumer_path, class: "dropdown-item" %></li>
+                  <li><%= active_link_to "Alle Nutzer", { controller: "consumers", action: "index" }, class: "dropdown-item" %></li>
+                  <li><%= active_link_to 'E-Mail an alle', { controller: "dashboard", action: "mail" }, class: "dropdown-item" %></li>
+                  <li><%= active_link_to "Alle Getränke", { controller: "beverages", action: "index" }, class: "dropdown-item" %></li>
+                  <li><%= active_link_to "Alle Striche", { controller: "tallysheet_entries", action: "index" }, class: "dropdown-item" %></li>
+                  <li><%= active_link_to "Alle System-Meldungen", { controller: "static_flashes", action: "index" }, class: "dropdown-item" %></li>
+                  <li><%= active_link_to "Berechnete Attribute aktualisieren", { controller: "consumers", action: "update_derived" }, class: "dropdown-item" %></li>
+                  <li><%= link_to "Abmelden", logout_path, data: { turbo_method: :delete}, class: "dropdown-item" %></li>
                 </ul>
               </li>
             <% end %>
@@ -64,7 +64,7 @@
         <div data-static-flash-target="toast" data-sticky="true" role="alert" aria-live="assertive" aria-atomic="true" class="toast text-bg-<%= flash_class("success") %>">
 			    <div class="toast-header"> 
             <small><button type="button" class="btn-close me-2" data-bs-dismiss="toast" aria-label="close"></button>
-            Expires <%= flash.expires.to_formatted_s(:short) %></small>
+            Läuft ab am <%= flash.expires.to_formatted_s(:short) %></small>
           </div>
           <div class="toast-body">
 			      <%= sanitize flash.content %>
