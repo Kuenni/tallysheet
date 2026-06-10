@@ -5,4 +5,17 @@ DATABASE_USER=<db user name>
 DATABASE_PASSWORD=<db password>
 DATABASE_DB=<db user name>
 
+Make sure the username and password match the settings in database.yml
+
 The content will be used to set the variables when creating the containers.
+
+In VSCode or Antigravity reopne the folder in a devcontainer using Shift-CMD-P on a Mac.
+Previously, docker needs to be installed an the docker daemon must be running. 
+On MacOS use the Docker Desktop installer to get the daemon. Install docker-compose
+using brew install docker-compose.
+
+When opened in a devcontainer, run bundle install and then rails db:create && rails db:migrate. When the seed files are in place, run rails db:seed.
+
+Then do a rails assets:precompile.
+
+Then run rails server

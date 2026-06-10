@@ -8,7 +8,7 @@ development:
   encoding: utf8
   database: tallysheet
   pool: 5
-  username: tallysheet
+  username: tally
   password: sheet!
   host: localhost
   socket: /var/run/mysqld/mysql.sock
@@ -21,7 +21,7 @@ test:
   encoding: utf8
   database: tallysheet
   pool: 5
-  username: tallysheet
+  username: tally
   password: sheet!
   host: localhost
   socket: /var/run/mysqld/mysql.sock
@@ -31,7 +31,7 @@ production:
   encoding: utf8
   database: tallysheet
   pool: 5
-  username: tallysheet
+  username: tally
   password: sheet!
   host: localhost
   socket: /var/run/mysqld/mysql.sock

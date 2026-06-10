@@ -41,6 +41,9 @@ end
 # JSON for parsing
 gem 'json', '~> 2.18.0'
 
+# Internationalization locales for Rails
+gem 'rails-i18n', '~> 8.1.0'
+
 # Pagination of intex pages
 gem 'will_paginate', '~> 4.0.1'
 
