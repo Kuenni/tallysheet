@@ -1,11 +1,13 @@
+<% if authenticated? %>
 <% content_for :jumbotron, render("carousel") %>
+<% end %>
 
 <table class="table table-striped table-hover align-middle text-center">
 	<thead>
 		<tr>
 			<th><%= sortable "name", "Name" %></th>
 			<th><%= sortable_numeric "amount_of_beverages", "Striche" %></th>
-			<th><%= sortable_numeric "amount_of_paid_beverages", "Bezahlt" %></th>
+			<th><%= sortable_numeric "amount_of_paid_beverages", "Abgerechnet" %></th>
 			<th><%= sortable_numeric "debt", "Schulden" %></th>
 			<th></th>
 		</tr>
