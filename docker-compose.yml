@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: tallysheet_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: tallysheet
+      MYSQL_USER: tally
+      MYSQL_PASSWORD: sheet!
+      MYSQL_ROOT_PASSWORD: root_db_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tallysheet_web
+    restart: always
+    command: ./bin/rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: tally
+      DATABASE_PASSWORD: sheet!
+      DATABASE_NAME: tallysheet
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_SERVE_STATIC_FILES: "true"
+      SECRET_KEY_BASE: 5c6bc0f51b54caf502c3e507f8c8d255f0f0c00  # You can generate a random secure string using `bin/rails secret`
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

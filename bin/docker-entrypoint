@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+# If running the rails server, check and prepare the database.
+if [ "$1" = "./bin/rails" ] && [ "$2" = "server" ]; then
+  echo "Waiting for database to be ready..."
+  # Wait until connection to database host is successful
+  until mysqladmin ping -h "${DATABASE_HOST:-localhost}" -u "${DATABASE_USER:-tally}" --password="${DATABASE_PASSWORD:-sheet!}" --silent; do
+    echo "Database at ${DATABASE_HOST:-localhost} is unavailable - sleeping"
+    sleep 1
+  done
+  echo "Database is ready!"
+
+  echo "Preparing database (db:prepare)..."
+  ./bin/rails db:prepare
+fi
+
+exec "$@"
